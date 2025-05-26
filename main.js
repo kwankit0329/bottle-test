@@ -1,36 +1,49 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const svg = document.getElementById("fire-bottle");
-  const water = document.getElementById("fire-water");
-  const audio = document.getElementById("fire-audio");
+// scripts.js
+document.addEventListener('DOMContentLoaded', function() {
+    const sounds = {
+        fire: document.getElementById('fire'),
+        rain: document.getElementById('rain'),
+        wave: document.getElementById('wave'),
+        wind: document.getElementById('wind')
+    };
 
-  let dragging = false;
-  svg.addEventListener("mousedown", e => {
-    dragging = true;
-    setVolume(e);
-  });
-  document.addEventListener("mousemove", e => {
-    if (dragging) setVolume(e);
-  });
-  document.addEventListener("mouseup", () => {
-    dragging = false;
-  });
+    const buttons = document.querySelectorAll('.play-btn');
+    const sliders = document.querySelectorAll('.volume-slider');
 
-  function setVolume(e) {
-    const rect = svg.getBoundingClientRect();
-    const y = e.clientY - rect.top;
-    const height = rect.height;
-    let volume = 1 - y / height;
-    volume = Math.min(Math.max(volume, 0), 1);
-    audio.volume = volume;
+    // 初始化音量
+    Object.values(sounds).forEach(audio => {
+        audio.volume = 0.5;
+    });
 
-    const waterHeight = 130 * volume;
-    const newY = 260 - waterHeight;
-    water.setAttribute("y", newY);
-    water.setAttribute("height", waterHeight);
-  }
+    // 播放/暂停 按钮
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const soundId = this.getAttribute('data-sound');
+            const audio = sounds[soundId];
 
-  // Set default
-  audio.volume = 0.5;
-  water.setAttribute("y", "195");
-  water.setAttribute("height", "65");
+            if (audio.paused) {
+                audio.play();
+                this.textContent = '暂停';
+                this.classList.add('playing');
+            } else {
+                audio.pause();
+                this.textContent = '播放';
+                this.classList.remove('playing');
+            }
+        });
+    });
+
+    // 滑块 控制音量 & 水位
+    sliders.forEach(slider => {
+        slider.addEventListener('input', function () {
+            const soundId = this.getAttribute('data-sound');
+            const volume = parseFloat(this.value);
+            sounds[soundId].volume = volume;
+
+            // 更新对应卡片的水面高度
+            const card = this.closest('.sound-card');
+            const water = card.querySelector('.water-fill');
+            water.style.transform = `scaleY(${volume})`;
+        });
+    });
 });
