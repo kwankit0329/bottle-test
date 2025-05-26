@@ -8,13 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const buttons = document.querySelectorAll('.play-btn');
     const sliders = document.querySelectorAll('.volume-slider');
+    const pauseAllBtn = document.getElementById('pause-all');
 
-    // 初始化音量
+    // Initialize volume
     Object.values(sounds).forEach(audio => {
         audio.volume = 0.5;
     });
 
-    // 每个按钮控制自己的音轨
+    // Button controls for each sound
     buttons.forEach(button => {
         button.addEventListener('click', function () {
             const soundId = this.getAttribute('data-sound');
@@ -22,17 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (audio.paused) {
                 audio.play();
-                this.textContent = '暂停';
+                this.textContent = 'Pause';
                 this.classList.add('playing');
             } else {
                 audio.pause();
-                this.textContent = '播放';
+                this.textContent = 'Play';
                 this.classList.remove('playing');
             }
         });
     });
 
-    // 音量调节功能
+    // Volume control
     sliders.forEach(slider => {
         slider.addEventListener('input', function () {
             const soundId = this.getAttribute('data-sound');
@@ -40,5 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
             sounds[soundId].volume = volume;
         });
     });
-});
 
+    // Pause All functionality
+    pauseAllBtn.addEventListener('click', function() {
+        Object.values(sounds).forEach(audio => {
+            audio.pause();
+        });
+        
+        buttons.forEach(button => {
+            button.textContent = 'Play';
+            button.classList.remove('playing');
+        });
+    });
+});
