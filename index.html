@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>白噪音放松站</title>
+    <title>White Noise Relaxation Station</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>白噪音放松站</h1>
-            <p>选择你喜欢的环境声音，调节到舒适的音量</p>
+            <h1>White Noise Relaxation</h1>
+            <p>Select your favorite ambient sounds and adjust to a comfortable volume</p>
+            <button id="pause-all" class="pause-all-btn">Pause All</button>
         </header>
         
         <main>
             <div class="sound-grid">
-                <!-- 火声 -->
+                <!-- Fire Sound -->
                 <div class="sound-card">
                     <div class="sound-icon fire"></div>
-                    <h3>篝火声</h3>
-                    <button class="play-btn" data-sound="fire">播放</button>
+                    <h3>Campfire</h3>
+                    <button class="play-btn" data-sound="fire">Play</button>
                     <div class="volume-control">
                         <span class="volume-icon">🔈</span>
                         <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="fire">
@@ -30,11 +31,11 @@
                     </audio>
                 </div>
                 
-                <!-- 雨声 -->
+                <!-- Rain Sound -->
                 <div class="sound-card">
                     <div class="sound-icon rain"></div>
-                    <h3>雨声</h3>
-                    <button class="play-btn" data-sound="rain">播放</button>
+                    <h3>Rain</h3>
+                    <button class="play-btn" data-sound="rain">Play</button>
                     <div class="volume-control">
                         <span class="volume-icon">🔈</span>
                         <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="rain">
@@ -44,11 +45,11 @@
                     </audio>
                 </div>
                 
-                <!-- 海浪声 -->
+                <!-- Wave Sound -->
                 <div class="sound-card">
                     <div class="sound-icon wave"></div>
-                    <h3>海浪声</h3>
-                    <button class="play-btn" data-sound="wave">播放</button>
+                    <h3>Ocean Waves</h3>
+                    <button class="play-btn" data-sound="wave">Play</button>
                     <div class="volume-control">
                         <span class="volume-icon">🔈</span>
                         <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="wave">
@@ -58,11 +59,11 @@
                     </audio>
                 </div>
                 
-                <!-- 风声 -->
+                <!-- Wind Sound -->
                 <div class="sound-card">
                     <div class="sound-icon wind"></div>
-                    <h3>风声</h3>
-                    <button class="play-btn" data-sound="wind">播放</button>
+                    <h3>Wind</h3>
+                    <button class="play-btn" data-sound="wind">Play</button>
                     <div class="volume-control">
                         <span class="volume-icon">🔈</span>
                         <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="wind">
@@ -75,7 +76,7 @@
         </main>
         
         <footer>
-            <p>© 2023 白噪音放松站 | 使用HTML, CSS和JavaScript构建</p>
+            <p>© 2023 White Noise Station | Built with HTML, CSS and JavaScript</p>
         </footer>
     </div>
     
