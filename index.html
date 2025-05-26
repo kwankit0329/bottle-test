@@ -1,29 +1,108 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SVG Bottle UI</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白噪音放松站</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Custom White Noise Bottles</h1>
-  <div class="bottle-container">
-    <div class="bottle" id="fire-bottle">
-      <svg viewBox="0 0 100 260" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <clipPath id="bottleShape">
-            <path d="M40 10 Q50 0 60 10 L60 80 Q62 100 70 120 Q75 150 65 180 Q60 210 50 250 Q40 210 35 180 Q25 150 30 120 Q38 100 40 80 Z" />
-          </clipPath>
-        </defs>
-        <rect class="water" id="fire-water" x="0" y="130" width="100" height="130" clip-path="url(#bottleShape)" />
-        <path d="M40 10 Q50 0 60 10 L60 80 Q62 100 70 120 Q75 150 65 180 Q60 210 50 250 Q40 210 35 180 Q25 150 30 120 Q38 100 40 80 Z"
-              fill="none" stroke="#555" stroke-width="2"/>
-        <ellipse cx="50" cy="10" rx="10" ry="4" fill="#ccc" />
-      </svg>
+    <div class="container">
+        <header>
+            <h1>白噪音放松站</h1>
+            <p>选择你喜欢的环境声音，调节到舒适的音量</p>
+        </header>
+        
+        <main>
+            <!-- SVG 瓶子图标定义（隐藏） -->
+            <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+                <symbol id="bottle-icon" viewBox="0 0 80 160">
+                    <defs>
+                        <clipPath id="bottle-clip">
+                            <path d="M20,10 L60,10 L60,140 Q60,155 40,155 Q20,155 20,140 Z"/>
+                        </clipPath>
+                    </defs>
+                    <!-- 水面 -->
+                    <rect class="water-fill" x="20" y="10" width="40" height="145" clip-path="url(#bottle-clip)"/>
+                    <!-- 瓶子外框 -->
+                    <path class="bottle-outline" d="M20,10 L60,10 L60,140 Q60,155 40,155 Q20,155 20,140 Z"/>
+                </symbol>
+            </svg>
+            
+            <div class="sound-grid">
+                <!-- 篝火声 -->
+                <div class="sound-card" data-sound="fire">
+                    <div class="sound-icon">
+                        <svg class="bottle-svg"><use href="#bottle-icon"/></svg>
+                    </div>
+                    <h3>篝火声</h3>
+                    <button class="play-btn" data-sound="fire">播放</button>
+                    <div class="volume-control">
+                        <span class="volume-icon">🔈</span>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="fire">
+                    </div>
+                    <audio id="fire" loop>
+                        <source src="fire.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                
+                <!-- 雨声 -->
+                <div class="sound-card" data-sound="rain">
+                    <div class="sound-icon">
+                        <svg class="bottle-svg"><use href="#bottle-icon"/></svg>
+                    </div>
+                    <h3>雨声</h3>
+                    <button class="play-btn" data-sound="rain">播放</button>
+                    <div class="volume-control">
+                        <span class="volume-icon">🔈</span>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="rain">
+                    </div>
+                    <audio id="rain" loop>
+                        <source src="rain.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                
+                <!-- 海浪声 -->
+                <div class="sound-card" data-sound="wave">
+                    <div class="sound-icon">
+                        <svg class="bottle-svg"><use href="#bottle-icon"/></svg>
+                    </div>
+                    <h3>海浪声</h3>
+                    <button class="play-btn" data-sound="wave">播放</button>
+                    <div class="volume-control">
+                        <span class="volume-icon">🔈</span>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="wave">
+                    </div>
+                    <audio id="wave" loop>
+                        <source src="wave.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                
+                <!-- 风声 -->
+                <div class="sound-card" data-sound="wind">
+                    <div class="sound-icon">
+                        <svg class="bottle-svg"><use href="#bottle-icon"/></svg>
+                    </div>
+                    <h3>风声</h3>
+                    <button class="play-btn" data-sound="wind">播放</button>
+                    <div class="volume-control">
+                        <span class="volume-icon">🔈</span>
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" data-sound="wind">
+                    </div>
+                    <audio id="wind" loop>
+                        <source src="wind.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2023 白噪音放松站 | 使用HTML, CSS和JavaScript构建</p>
+        </footer>
     </div>
-    <audio id="fire-audio" src="sounds/fire.mp3" loop autoplay></audio>
-  </div>
-  <script src="main.js"></script>
+    
+    <script src="scripts.js"></script>
 </body>
 </html>
