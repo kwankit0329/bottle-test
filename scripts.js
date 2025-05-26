@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // 初始化设置水位
+    // 初始化水位
     slider.dispatchEvent(new Event("input"));
   });
 });
